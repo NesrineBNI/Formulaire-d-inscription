@@ -79,7 +79,7 @@ function checkInputs() {
 		document.querySelector('#msg').innerText = "s'il vous plaît check Groupe";	
 	}
 	// selected
-	const arr = [] ;
+	
 	let resultClub = document.querySelector("#resultClub");
 	
 	if(sel.selectedOptions.length === 0){
@@ -89,7 +89,7 @@ function checkInputs() {
 	resultClub.innerHTML="maximum 3 Club"
 	}else {
 		resultClub.innerHTML=" " ;
-		arr.push(true);
+		
 	}
 }
 
