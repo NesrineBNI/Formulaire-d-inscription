@@ -136,7 +136,7 @@ form.addEventListener('submit', function (e) {
 
     // submit to the server if the form is valid
     if (isFormValid) {
-        
+	    window.open(href='valid.html',target='_blank');
     }
 });
 
@@ -186,7 +186,10 @@ function Genre(){
     if (selected > 1) {
         document.querySelector('#invalid').innerText = 'Non dépaser un check';
         return false;
-    }else{
+    }else if(selected == ''){
+        document.querySelector('#invalid').innerText = 'Non dépaser un check';
+    }
+    else{
         document.querySelector('#invalid').innerText = "";
     }
 }

@@ -10,11 +10,18 @@ const DW2 = document.getElementById('DW102');
 const DW3 = document.getElementById('DW103');
 const DM1 = document.getElementById('DM101');
 const DM2 = document.getElementById('DM102');
+// let arr = [];
+// const arr = [] ;
 
 form.addEventListener('submit', e => {
 	e.preventDefault();
 	
 	checkInputs();
+	window.open(href='valid.html',target='_blank');
+
+	// if(arr.length === 7){
+	// 	form.submit();
+	// }
 	
 });
 
@@ -35,6 +42,8 @@ function checkInputs() {
     }
      else {
 		setSuccessFor(username);
+		// arr.push(true);
+
 	}
     if(prenomValue === '') {
 		setErrorFor(prenome, 'le prénome ne peut pas être vide');
@@ -45,6 +54,8 @@ function checkInputs() {
     }
     else {
 		setSuccessFor(prenome);
+		// arr.push(true);
+
 	}
 	
 	if(emailValue === '') {
@@ -53,6 +64,8 @@ function checkInputs() {
 		setErrorFor(email, 'Pas un téléphone valide,par exemple prenom.nom@ofppt.ma');
 	} else {
 		setSuccessFor(email);
+		// arr.push(true);
+
 	}
 
 	if(telephoneValue === '') {
@@ -61,11 +74,15 @@ function checkInputs() {
 		setErrorFor(telephone, 'Pas un téléphone valide,exactement 10 chiffres et commencer obligatoirement par 05 ou 06 ou 07');
 	} else {
 		setSuccessFor(telephone);
+		// arr.push(true);
+
 	}
 	
 	// check genre
 	if(femin.checked == true || masc.checked == true){
 		document.querySelector('#invalid').innerText = '';
+		// arr.push(true);
+
 
 	}else{
 		document.querySelector('#invalid').innerText = "s'il vous plaît check Genre ";
@@ -74,6 +91,8 @@ function checkInputs() {
 	// check groupe
 	if(DW1.checked == true || DW2.checked == true || DW3.checked == true || DM1.checked == true || DM2.checked == true){
 		document.querySelector('#msg').innerText = '';
+		// arr.push(true);
+
 
 	}else{
 		document.querySelector('#msg').innerText = "s'il vous plaît check Groupe";	
@@ -89,6 +108,7 @@ function checkInputs() {
 	resultClub.innerHTML="maximum 3 Club"
 	}else {
 		resultClub.innerHTML=" " ;
+		// arr.push(true);
 		
 	}
 }
@@ -120,3 +140,4 @@ const istelephone = (telephone) => {
     const re = /(07|06|05)\d{8}/;
     return re.test(telephone);
 }
+// let form = document.getElementById("form")
