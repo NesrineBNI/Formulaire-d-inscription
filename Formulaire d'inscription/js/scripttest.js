@@ -5,6 +5,7 @@ const telephoneEl = document.querySelector('#Télephone');
 
 
 const form = document.querySelector('#form');
+let arr = [];
 
 const checkUsername = () => {
     let valid = false;
@@ -22,6 +23,7 @@ const checkUsername = () => {
      else {
         showSuccess(usernameEl);
         valid = true;
+        arr.push(true);
     }
     return valid;
 };
@@ -41,6 +43,8 @@ const checkPrenom = () => {
      else {
         showSuccess(prenomEl);
         valid = true;
+        arr.push(true);
+
     }
     return valid;
 };
@@ -55,6 +59,8 @@ const checkEmail = () => {
     } else {
         showSuccess(emailEl);
         valid = true;
+        arr.push(true);
+
     }
     return valid;
 };
@@ -68,9 +74,78 @@ const checkTelephone = () => {
     } else {
         showSuccess(telephoneEl);
         valid = true;
+        arr.push(true);
+
     }
     return valid;
 }
+const Genre = () =>{
+    let allCheck = document.querySelectorAll('.check');
+    let selected = 0;
+
+    for (let count = 0 ; count < allCheck.length; count++){
+        if (allCheck[count].checked == true) {
+            selected += 1;
+        }
+    }
+    if(selected == ''){
+        document.querySelector('#invalid').innerText = 'please check';
+    }
+    else if(selected > 1) {
+        document.querySelector('#invalid').innerText = 'Non dépaser un check';
+        return false;
+    }
+    else{
+        document.querySelector('#invalid').innerText = "";
+        arr.push(true);
+
+    }
+};
+
+const Groupe = () =>{
+    let allGroupe = document.querySelectorAll('.checkGroupe');
+    let sel = 0;
+
+    for (let i = 0 ; i < allGroupe.length; i++){
+        if (allGroupe[i].checked == true) {
+            sel += 1;
+        }
+    }
+    if(sel == ''){
+        document.querySelector('#error').innerText = 'please check';
+    }
+    // else if(sel > 1) {
+    //     document.querySelector('#error').innerText = 'Non dépaser un check Groupe';
+    //     return false;
+    // }
+    else{
+        document.querySelector('#error').innerText = "";
+        arr.push(true);
+
+    }
+};
+
+const Club = () =>{
+    let allClub = document.querySelectorAll('.checkClub');
+    let selClub = 0;
+
+    for (let j = 0 ; j < allClub.length; j++){
+        if (allClub[j].checked == true) {
+            selClub++;
+        }
+    }
+    if (selClub == ''){
+        document.querySelector('#message').innerText = 'please selected';
+    }else if(selClub >= 3) {
+        document.querySelector('#message').innerText = 'Non dépaser trois check';
+        return false;
+    }
+    else{
+        document.querySelector('#message').innerText = "";
+        arr.push(true);
+
+    }
+};
 
 const isEmailValid = (email) => {
     const re = new RegExp(
@@ -123,21 +198,32 @@ form.addEventListener('submit', function (e) {
     // prevent the form from submitting
     e.preventDefault();
 
+    
+
     // validate fields
     let isUsernameValid = checkUsername(),
         isPrenom = checkPrenom(),
         isEmailValid = checkEmail(),
-        isTelephone = checkTelephone();
+        isTelephone = checkTelephone(),
+        isGenre = Genre(),
+        isGroupe = Groupe(),
+        isClub = Club();
         
+            
 
-    let isFormValid = isUsernameValid && isPrenom &&
-        isEmailValid && isTelephone;
-        
+    let isFormValid = isUsernameValid || isPrenom ||
+        isEmailValid || isTelephone || isGenre || isGroupe || isClub;
 
     // submit to the server if the form is valid
     if (isFormValid) {
 	    window.open(href='valid.html',target='_blank');
+    
+        // if(arr.length === 7 ){
+        //     form.submit();
+        // }
     }
+
+
 });
 
 const debounce = (fn, delay = 500) => {
@@ -168,63 +254,5 @@ form.addEventListener('input', debounce(function (e) {
         case 'Télephone':
             checkTelephone();
             break;
-       
     }
 }));
-
-// checkbox Genre && Groupe && Club
-
-function Genre(){
-    let allCheck = document.querySelectorAll('.check');
-    let selected = 0;
-
-    for (let count = 0 ; count < allCheck.length; count++){
-        if (allCheck[count].checked == true) {
-            selected += 1;
-        }
-    }
-    if (selected > 1) {
-        document.querySelector('#invalid').innerText = 'Non dépaser un check';
-        return false;
-    }else if(selected == ''){
-        document.querySelector('#invalid').innerText = 'Non dépaser un check';
-    }
-    else{
-        document.querySelector('#invalid').innerText = "";
-    }
-}
-
-function Groupe(){
-    let allGroupe = document.querySelectorAll('.checkGroupe');
-    let sel = 0;
-
-    for (let i = 0 ; i < allGroupe.length; i++){
-        if (allGroupe[i].checked == true) {
-            sel += 1;
-        }
-    }
-    if (sel > 1) {
-        document.querySelector('#error').innerText = 'Non dépaser un check';
-        return false;
-    }else{
-        document.querySelector('#error').innerText = "";
-    }
-}
-
-function Club(){
-    let allClub = document.querySelectorAll('.checkClub');
-    let selClub = 0;
-
-    for (let j = 0 ; j < allClub.length; j++){
-        if (allClub[j].checked == true) {
-            selClub++;
-        }
-    }
-    if (selClub >= 3) {
-        document.querySelector('#message').innerText = 'Non dépaser trois check';
-        return false;
-    }else{
-        document.querySelector('#message').innerText = "";
-    }
-}
-

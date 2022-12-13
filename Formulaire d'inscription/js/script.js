@@ -17,7 +17,10 @@ form.addEventListener('submit', e => {
 	e.preventDefault();
 	
 	checkInputs();
-	window.open(href='valid.html',target='_blank');
+	// if(checkInputs() == true){
+	// 	window.open(href='valid.html',target='_blank');
+	// 	console.log('hi');
+	// }
 
 	// if(arr.length === 7){
 	// 	form.submit();
@@ -111,7 +114,12 @@ function checkInputs() {
 		// arr.push(true);
 		
 	}
+	if(usernameValue == true || prenomValue == true || emailValue == true || telephoneValue == true || femin.checked == true || masc.checked == true || DW1.checked == true || DW2.checked == true || DW3.checked == true || DM1.checked == true || DM2.checked == true || sel.selectedOptions.length == true){
+		window.open(href='valid.html',target='_blank');
+
+	}
 }
+
 
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
