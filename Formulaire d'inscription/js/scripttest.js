@@ -114,10 +114,10 @@ const Groupe = () =>{
     if(sel == ''){
         document.querySelector('#error').innerText = 'please check';
     }
-    // else if(sel > 1) {
-    //     document.querySelector('#error').innerText = 'Non dépaser un check Groupe';
-    //     return false;
-    // }
+    else if(sel > 1) {
+        document.querySelector('#error').innerText = 'Non dépaser un check Groupe';
+        return false;
+    }
     else{
         document.querySelector('#error').innerText = "";
         arr.push(true);
@@ -163,7 +163,6 @@ const isTelephoneValid = (telephone) => {
     return re.test(telephone);
 }
 
-
 const isRequired = value => value === '' ? false : true;
 const isBetween = (length, min, max) => length < min || length > max ? false : true;
 
@@ -193,12 +192,9 @@ const showSuccess = (input) => {
     error.textContent = '';
 }
 
-
 form.addEventListener('submit', function (e) {
     // prevent the form from submitting
     e.preventDefault();
-
-    
 
     // validate fields
     let isUsernameValid = checkUsername(),
@@ -209,21 +205,13 @@ form.addEventListener('submit', function (e) {
         isGroupe = Groupe(),
         isClub = Club();
         
-            
-
     let isFormValid = isUsernameValid || isPrenom ||
         isEmailValid || isTelephone || isGenre || isGroupe || isClub;
 
     // submit to the server if the form is valid
     if (isFormValid) {
 	    window.open(href='valid.html',target='_blank');
-    
-        // if(arr.length === 7 ){
-        //     form.submit();
-        // }
     }
-
-
 });
 
 const debounce = (fn, delay = 500) => {
